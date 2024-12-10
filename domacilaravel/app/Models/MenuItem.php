@@ -8,13 +8,30 @@ use Illuminate\Database\Eloquent\Model;
 class MenuItem extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'naziv',
         'opis',
         'cena',
         'restaurant_id',
-        'alergeni', // Napomena o alergenima
-        'sastojci', // Lista sastojaka
-        'slika', // URL za sliku jela
+        'alergeni',
+        'sastojci',
+        'slika',
     ];
+
+    /**
+     * Veza sa restoranom.
+     */
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
+
+    /**
+     * Veza sa stavkama porudžbine.
+     */
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

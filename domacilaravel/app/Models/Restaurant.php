@@ -8,13 +8,38 @@ use Illuminate\Database\Eloquent\Model;
 class Restaurant extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'naziv',
         'adresa',
         'telefon',
         'opis',
-        'latitude', // Dodato polje za širinu
-        'longitude', // Dodato polje za dužinu
-        'tip_hrane', // Dodato polje za tip hrane
+        'latitude',
+        'longitude',
+        'tip_hrane',
     ];
+
+    /**
+     * Veza sa jelima.
+     */
+    public function menuItems()
+    {
+        return $this->hasMany(MenuItem::class);
+    }
+
+    /**
+     * Veza sa porudžbinama.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Veza sa recenzijama.
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

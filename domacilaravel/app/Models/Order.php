@@ -16,4 +16,28 @@ class Order extends Model
         'status',
         'datum',
     ];
+
+    /**
+     * Veza sa korisnikom.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Veza sa restoranom.
+     */
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
+
+    /**
+     * Veza sa stavkama porudžbine.
+     */
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

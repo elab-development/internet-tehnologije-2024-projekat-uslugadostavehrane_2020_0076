@@ -15,4 +15,20 @@ class Review extends Model
         'ocena',
         'komentar',
     ];
+
+    /**
+     * Veza sa korisnikom.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Veza sa restoranom.
+     */
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
 }
