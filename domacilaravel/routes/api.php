@@ -5,6 +5,7 @@ use App\Http\Controllers\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,3 +30,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/orders/{id}', [OrderController::class, 'destroy']); // Brisanje porudžbine
 });
 
+
+
+Route::post('/register', [AuthController::class, 'register']); // Registracija
+Route::post('/login', [AuthController::class, 'login']);       // Prijava
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']); // Odjava
+});
