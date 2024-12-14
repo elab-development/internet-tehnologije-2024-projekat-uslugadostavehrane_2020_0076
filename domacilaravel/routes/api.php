@@ -4,7 +4,7 @@ use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,6 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('restaurants', RestaurantController::class);
 Route::apiResource('menu-items', MenuItemController::class);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    // Rute za rad sa porudžbinama
+    Route::get('/orders', [OrderController::class, 'index']);          // Prikaz svih porudžbina
+    Route::get('/orders/{id}', [OrderController::class, 'show']);      // Prikaz jedne porudžbine
+    Route::post('/orders', [OrderController::class, 'store']);         // Kreiranje nove porudžbine
+    Route::put('/orders/{id}', [OrderController::class, 'update']);    // Ažuriranje postojeće porudžbine
+    Route::delete('/orders/{id}', [OrderController::class, 'destroy']); // Brisanje porudžbine
 });
+
