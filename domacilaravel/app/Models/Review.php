@@ -17,7 +17,7 @@ class Review extends Model
     ];
 
     /**
-     * Veza sa korisnikom.
+     * Veza sa korisnikom. 
      */
     public function user()
     {
