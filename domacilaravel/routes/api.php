@@ -51,4 +51,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/register', [AuthController::class, 'register']); // Registracija
 Route::post('/login', [AuthController::class, 'login']);       // Prijava
- 
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+    
+});
+
+Route::middleware(['auth:sanctum', 'role:korisnik'])->group(function () {
+    
+});
