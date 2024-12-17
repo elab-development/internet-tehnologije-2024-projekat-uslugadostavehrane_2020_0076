@@ -7,12 +7,41 @@ const LandingPage = () => {
   // Putanja za video snimak iz public foldera
   const video = '/3.mp4';
 
+  // Funkcija za kesiranje podataka u localStorage
+  const cacheUsers = (data) => {
+    localStorage.setItem('cachedUsers', JSON.stringify({
+      data,
+      timestamp: new Date().getTime(),
+    }));
+  };
+
+  // Funkcija za dohvat podataka iz kes memorije
+  const getCachedUsers = () => {
+    const cached = localStorage.getItem('cachedUsers');
+    if (cached) {
+      const { data, timestamp } = JSON.parse(cached);
+      const ONE_HOUR = 60 * 60 * 1000; // 1 sat u milisekundama
+      if (new Date().getTime() - timestamp < ONE_HOUR) {
+        return data;
+      }
+    }
+    return null;
+  };
+
   // Dohvat korisnika za testimonial
   useEffect(() => {
-    fetch('https://randomuser.me/api/?results=3')
-      .then((res) => res.json())
-      .then((data) => setUsers(data.results))
-      .catch((err) => console.error(err));
+    const cachedData = getCachedUsers();
+    if (cachedData) {
+      setUsers(cachedData);
+    } else {
+      fetch('https://randomuser.me/api/?results=3')
+        .then((res) => res.json())
+        .then((data) => {
+          setUsers(data.results);
+          cacheUsers(data.results);
+        })
+        .catch((err) => console.error(err));
+    }
   }, []);
 
   return (
