@@ -14,7 +14,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::where('user_id', Auth::id())->get();
+        $reviews = Review::all();
         return response()->json($reviews, 200);
     }
 
@@ -23,7 +23,7 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-        $review = Review::where('user_id', Auth::id())->findOrFail($id);
+        $review = Review::findOrFail($id);
         return response()->json($review, 200);
     }
 

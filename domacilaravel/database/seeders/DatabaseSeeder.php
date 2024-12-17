@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
                 'telefon' => '0612345678',
                 'latitude' => $faker->latitude,
                 'longitude' => $faker->longitude,
-                'uloga' => 'user',
+                'uloga' => 'korisnik',
             ],
         ]);
 
@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'user_id' => 2,
-                'restaurant_id' => 2,
+                'restaurant_id' => 1,
                 'ukupna_cena' => 900.00,
                 'status' => 'pending',
                 'datum' => $faker->dateTimeBetween('-1 week', 'now'),

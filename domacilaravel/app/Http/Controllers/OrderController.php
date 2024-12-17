@@ -41,7 +41,7 @@ class OrderController extends Controller
             'order_items' => 'required|array',
             'order_items.*.menu_item_id' => 'required|exists:menu_items,id',
             'order_items.*.kolicina' => 'required|integer|min:1',
-            'order_items.*.cena' => 'required|numeric|min:0',
+            'order_items.*.cena' => 'required|numeric|min:1',
         ]);
 
         if ($validator->fails()) {
@@ -73,7 +73,7 @@ class OrderController extends Controller
             'order_items' => 'nullable|array',
             'order_items.*.menu_item_id' => 'required|exists:menu_items,id',
             'order_items.*.kolicina' => 'required|integer|min:1',
-            'order_items.*.cena' => 'required|numeric|min:0',
+            'order_items.*.cena' => 'required|numeric|min:1',
         ]);
 
         if ($validator->fails()) {

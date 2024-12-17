@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('telefon')->nullable()->after('adresa');
             $table->decimal('latitude', 10, 8)->nullable()->after('telefon');
             $table->decimal('longitude', 11, 8)->nullable()->after('latitude');
-            $table->string('uloga')->default('user')->after('longitude');  
+            $table->string('uloga')->default('korisnik')->after('longitude');  
         });
     }
 

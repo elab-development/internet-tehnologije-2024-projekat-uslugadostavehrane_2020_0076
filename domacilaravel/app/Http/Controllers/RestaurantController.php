@@ -46,10 +46,10 @@ class RestaurantController extends Controller
 
         $data = $validator->validated();
 
-        // Ako postoji ulogovani korisnik
-        if ($request->user()) {
-            $data['user_id'] = $request->user()->id;
-        }
+        // // Ako postoji ulogovani korisnik
+        // if ($request->user()) {
+        //     $data['user_id'] = $request->user()->id;
+        // }
 
         $restaurant = Restaurant::create($data);
 
