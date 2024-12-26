@@ -1,324 +1,432 @@
-/* Palette:
-   Light Greenish: #E0F2E9
-   Light Brown/Pink: #CEB5A7
-   Darker Brown: #A17C6B
-   Grayish Blue: #5B7B7A
-   Teal Green: #3C887E
-*/
 
-/* Global Resets & Fonts */
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
+/* Glavni stilovi za stranicu */
 .landing-page {
-  background-color: #E0F2E9;
-  color: #5B7B7A;
-  overflow-x: hidden;
-}
-
-.landing-page__header {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.landing-page__nav {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(224, 242, 233, 0.8);
-  padding: 1rem 2rem;
-}
-
-.landing-page__logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #3C887E;
-  transition: color 0.3s ease;
-}
-
-.landing-page__logo:hover {
-  color: #A17C6B;
-}
-
-.landing-page__nav-list {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-}
-
-.landing-page__nav-list li a {
-  text-decoration: none;
-  color: #3C887E;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.landing-page__nav-list li a:hover {
-  color: #A17C6B;
-}
-
-.landing-page__hero {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.landing-page__video-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.landing-page__hero-content {
-  position: relative;
-  z-index: 1;
-  top: 30%;
-  left: 5%;
-  color: #CEB5A7;
-  max-width: 500px;
-  animation: fadeInUp 1.5s ease forwards;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    line-height: 1.6;
   }
-}
-
-.landing-page__title {
-  font-size: 3rem;
-  margin: 0;
-  line-height: 1.2;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-}
-
-.landing-page__subtitle {
-  font-size: 1.2rem;
-  margin: 1rem 0 2rem 0;
-}
-
-.landing-page__cta-btn {
-  display: inline-block;
-  padding: 0.8rem 1.5rem;
-  background-color: #3C887E;
-  color: #E0F2E9;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.landing-page__cta-btn:hover {
-  background-color: #A17C6B;
-  transform: scale(1.05);
-}
-
-/* Services Section */
-.landing-page__services {
-  padding: 4rem 2rem;
-  text-align: center;
-  background-color: #E0F2E9;
-}
-
-.landing-page__section-title {
-  font-size: 2.5rem;
-  color: #3C887E;
-  margin-bottom: 2rem;
-}
-
-.landing-page__cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.landing-page__card {
-  background: #CEB5A7;
-  border-radius: 8px;
-  padding: 2rem 1rem;
-  color: #E0F2E9;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.landing-page__card:hover {
-  transform: translateY(-5px);
-}
-
-.landing-page__card-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #E0F2E9;
-}
-
-/* About Section */
-.landing-page__about {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 4rem 2rem;
-  align-items: center;
-  gap: 2rem;
-  background-color: #CEB5A7;
-  color: #E0F2E9;
-}
-
-.landing-page__about-text {
-  flex: 1 1 400px;
-}
-
-.landing-page__about-text h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #E0F2E9;
-}
-
-.landing-page__about-images {
-  flex: 1 1 400px;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.landing-page__img {
-  width: 100%;
-  max-width: 350px;
-  border-radius: 8px;
-  object-fit: cover;
-  transition: filter 0.3s ease;
-}
-
-.landing-page__img:hover {
-  filter: brightness(1.1);
-}
-
-.landing-page__img--small {
-  max-width: 250px;
-}
-
-/* Testimonials Section */
-.landing-page__testimonials {
-  background-color: #E0F2E9;
-  padding: 4rem 2rem;
-  text-align: center;
-  color: #3C887E;
-}
-
-.landing-page__testimonials h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #3C887E;
-}
-
-.landing-page__testimonials-grid {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.landing-page__testimonial {
-  background: #A17C6B;
-  color: #E0F2E9;
-  padding: 2rem;
-  border-radius: 8px;
-  position: relative;
-  transition: transform 0.3s ease;
-}
-
-.landing-page__testimonial:hover {
-  transform: scale(1.02);
-}
-
-.landing-page__testimonial p {
-  font-style: italic;
-  margin-bottom: 1rem;
-}
-
-/* CTA Section */
-.landing-page__cta-section {
-  background: #3C887E;
-  color: #E0F2E9;
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
-.landing-page__cta-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.landing-page__cta-btn--dark {
-  background-color: #5B7B7A;
-}
-
-.landing-page__cta-btn--dark:hover {
-  background-color: #A17C6B;
-}
-
-/* Footer */
-.landing-page__footer {
-  background: #5B7B7A;
-  color: #E0F2E9;
-  padding: 2rem;
-}
-
-.landing-page__footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto 2rem;
-}
-
-.landing-page__footer-content > div h3 {
-  margin-bottom: 0.5rem;
-  color: #E0F2E9;
-}
-
-.landing-page__footer-note {
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-  .landing-page__hero-content {
-    top: 40%;
-    left: 5%;
-    font-size: 90%;
+  
+  /* Reset i bazične postavke */
+  * {
+    box-sizing: border-box;
   }
-
-  .landing-page__nav-list {
-    display: none;
+  
+  /* Hero sekcija */
+  .landing-page__header {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
   }
-
-  .landing-page__about {
-    flex-direction: column;
-  }
-
-  .landing-page__footer-content {
-    flex-direction: column;
+  
+  .landing-page__hero {
+    position: relative;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    height: 100%;
   }
-}
+  
+  .landing-page__video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+   
+  }
+  
+  .landing-page__hero-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 0 1rem;
+    z-index:500;
+  }
+  
+  .landing-page__title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: #00c389; /* Glovo primary */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .landing-page__subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    color: #444;
+  }
+  
+  .landing-page__cta-btn {
+    display: inline-block;
+    background-color: #febe10; /* Glovo accent */
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+  }
+  
+  .landing-page__cta-btn:hover {
+    background-color: #ffce33;
+  }
+  
+  /* Ponuda sekcija */
+  .landing-page__services {
+    padding: 4rem 1rem;
+    text-align: center;
+    background-color: #fafafa;
+  }
+  
+  .landing-page__section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #00c389;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .landing-page__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .landing-page__card {
+    background-color: #ffffff;
+    border: 1px solid #efefef;
+    border-radius: 6px;
+    padding: 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+  }
+  
+  .landing-page__card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .landing-page__card-icon {
+    font-size: 2rem;
+    color: #00c389;
+    margin-bottom: 1rem;
+  }
+  
+  .landing-page__card h3 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  
+  .landing-page__card p {
+    font-size: 0.95rem;
+    color: #666;
+  }
+  
+  /* O nama sekcija */
+  .landing-page__about {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .landing-page__about-text {
+    flex: 1 1 400px;
+  }
+  
+  .landing-page__about-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #00c389;
+    text-transform: capitalize;
+  }
+  
+  .landing-page__about-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #555;
+  }
+  
+  .landing-page__about-images {
+    flex: 1 1 400px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .landing-page__img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 6px;
+    object-fit: cover;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .landing-page__img--small {
+    max-width: 200px;
+    align-self: center;
+  }
+  
+  /* Testimonial sekcija */
+  .landing-page__testimonials {
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+  
+  .landing-page__testimonials h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #00c389;
+    text-transform: uppercase;
+  }
+  
+  .landing-page__testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .landing-page__testimonial {
+    background-color: #ffffff;
+    border: 1px solid #efefef;
+    border-radius: 6px;
+    padding: 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s;
+  }
+  
+  .landing-page__testimonial:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .landing-page__testimonial p {
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    color: #444;
+  }
+  
+  .landing-page__testimonial span {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* CTA sekcija */
+  .landing-page__cta-section {
+    background-color: #00c389;
+    color: #ffffff;
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+  
+  .landing-page__cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .landing-page__cta-section p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .landing-page__cta-btn--dark {
+    background-color: #333;
+    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .landing-page__cta-btn--dark:hover {
+    background-color: #555;
+  }
+  
+  /* Footer */
+  .landing-page__footer {
+    background-color: #febe10; /* Glovo accent */
+    color: #333;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  .landing-page__footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+  }
+  
+  .landing-page__footer-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  .landing-page__footer-content p {
+    margin: 0.25rem 0;
+    color: #444;
+  }
+  
+  .landing-page__footer-note {
+    font-size: 0.9rem;
+    color: #333;
+  }
+  /* Za inspiraciju, koristimo glavne Glovo boje i nesto slicnu strukturu */
+
+/* Reset i bazične postavke */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .auth-page {
+    min-height: 100vh;
+    background-color: #fafafa; /* svetla pozadina */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  
+  .auth-container {
+    background-color: #ffffff;
+    border: 1px solid #efefef;
+    border-radius: 6px;
+    max-width: 450px;
+    width: 100%;
+    padding: 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .auth-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #00c389; /* Glovo primary */
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  .auth-error {
+    background-color: #fbdede;
+    color: #b60000;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .auth-success {
+    background-color: #e2f9f0;
+    color: #006644;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .auth-form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .auth-form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #444;
+  }
+  
+  .auth-form-group input,
+  .auth-form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .auth-submit-btn {
+    background-color: #00c389; /* Glovo primary */
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .auth-submit-btn:hover {
+    background-color: #02b57f;
+  }
+  
+  .auth-toggle-btn {
+    background-color: #febe10; /* Glovo accent */
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .auth-toggle-btn:hover {
+    background-color: #ffce33;
+  }
+  .progress-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .progress-step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .progress-step.active {
+    background-color: #00c389;
+  }
+  
