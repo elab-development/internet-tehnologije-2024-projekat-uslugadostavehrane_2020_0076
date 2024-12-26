@@ -5,6 +5,7 @@ import AuthPage from './components/Login/AuthPage';
 import { UserProvider } from './components/globalne/UserContext';
 import Navbar from './components/reusable/Navbar';
 import RestaurantsList from './components/Restaurants/RestaurantsList';
+import MenuItemsList from './components/Restaurants/MenuItemsList';
  
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/ponuda" element={<RestaurantsList></RestaurantsList>} />
+            <Route path="/restaurants/:id/menu" element={<MenuItemsList />} />
+
           </Routes>
         </div>
       </Router>

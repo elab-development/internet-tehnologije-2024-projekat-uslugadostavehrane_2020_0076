@@ -574,4 +574,114 @@ nav ul {
   .restaurant-card__map-btn:hover {
     background-color: #02b57f;
   }
+  .restaurant-card {
+    background-color: #ffffff;
+    border: 1px solid #efefef;
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+  }
+  
+  .restaurant-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .restaurant-card__title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #00c389;
+  }
+  
+  .restaurant-card__menu-btn {
+    background-color: #febe10;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .restaurant-card__menu-btn:hover {
+    background-color: #ffce33;
+  }
+  
+
+
+  /* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* MenuItemCard Styles */
+  .menu-item-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .menu-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .menu-item-card__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .menu-item-card__content {
+    padding: 16px;
+  }
+  
+  .menu-item-card__title {
+    font-size: 1.25rem;
+    margin: 0 0 8px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .menu-item-card__description {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0 0 12px;
+  }
+  
+  .menu-item-card__price {
+    font-size: 1rem;
+    color: #007BFF;
+    font-weight: bold;
+    margin: 0 0 8px;
+  }
+  
+  .menu-item-card__allergens,
+  .menu-item-card__ingredients {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 4px 0;
+  }
+  
+  /* MenuItemsList Styles */
+  .menu-items-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .menu-items-list p {
+    text-align: center;
+    color: #777;
+  }
   

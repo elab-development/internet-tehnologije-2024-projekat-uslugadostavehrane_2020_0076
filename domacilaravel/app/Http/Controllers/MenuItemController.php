@@ -91,4 +91,20 @@ class MenuItemController extends Controller
             'message' => 'Menu item deleted successfully.',
         ]);
     }
+    public function getByRestaurant($restaurantId)
+    {
+        $menuItems = MenuItem::where('restaurant_id', $restaurantId)->get();
+
+        if ($menuItems->isEmpty()) {
+            return response()->json([
+                'message' => 'No menu items found for this restaurant.',
+                'data' => [],
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Menu items retrieved successfully.',
+            'data' => $menuItems,
+        ]);
+    }
 }

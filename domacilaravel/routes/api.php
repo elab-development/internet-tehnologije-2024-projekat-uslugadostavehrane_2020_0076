@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReviewController;
+ 
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,9 +20,8 @@ use App\Http\Controllers\ReviewController;
 */
 
 
-
+Route::get('/restaurants/{id}/menu-items', [MenuItemController::class, 'getByRestaurant']);
  
-
 
 Route::middleware('auth:sanctum')->group(function () {
     // Rute za rad sa porudžbinama

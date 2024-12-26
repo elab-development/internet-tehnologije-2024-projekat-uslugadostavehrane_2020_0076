@@ -15,6 +15,7 @@ const RestaurantsList = () => {
       {restaurants.map((restaurant) => (
         <RestaurantCard
           key={restaurant.id}
+          id={restaurant.id}
           naziv={restaurant.naziv}
           adresa={restaurant.adresa}
           telefon={restaurant.telefon}
