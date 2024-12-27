@@ -6,20 +6,20 @@ import { UserProvider } from './components/globalne/UserContext';
 import Navbar from './components/reusable/Navbar';
 import RestaurantsList from './components/Restaurants/RestaurantsList';
 import MenuItemsList from './components/Restaurants/MenuItemsList';
- 
+import CartPage from './components/Korpa/CartPage';
 
 function App() {
   return (
     <UserProvider>
       <Router>
-        <Navbar></Navbar>
+        <Navbar />
         <div className="App">
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/auth" element={<AuthPage />} />
-            <Route path="/ponuda" element={<RestaurantsList></RestaurantsList>} />
+            <Route path="/ponuda" element={<RestaurantsList />} />
             <Route path="/restaurants/:id/menu" element={<MenuItemsList />} />
-
+            <Route path="/korpa" element={<CartPage />} />
           </Routes>
         </div>
       </Router>

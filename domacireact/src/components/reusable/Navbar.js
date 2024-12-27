@@ -33,6 +33,8 @@ const Navbar = () => {
         {user ? (
           <>
             <li><a href="/ponuda">Ponuda</a></li>
+            <li><a href="/korpa">Korpa</a></li>
+
             <li onClick={handleLogout} style={{ cursor: 'pointer' }}>Odjava</li>
           </>
         ) : (

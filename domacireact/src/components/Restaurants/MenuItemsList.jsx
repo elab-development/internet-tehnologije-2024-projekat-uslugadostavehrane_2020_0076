@@ -4,10 +4,7 @@ import useMenuItems from '../../hooks/useMenuItems';
 import MenuItemCard from '../reusable/MenuItemCard';
 
 const MenuItemsList = () => {
-  // Izvlačenje restaurantId iz URL-a
   const { id: restaurantId } = useParams();
-
-  // Dohvat stavki menija koristeći prilagođenu kuku
   const { menuItems, loading, error } = useMenuItems(restaurantId);
 
   if (loading) return <p>Učitavanje stavki menija...</p>;
@@ -18,6 +15,7 @@ const MenuItemsList = () => {
       {menuItems.map((item) => (
         <MenuItemCard
           key={item.id}
+          id={item.id}
           naziv={item.naziv}
           opis={item.opis}
           cena={item.cena}
