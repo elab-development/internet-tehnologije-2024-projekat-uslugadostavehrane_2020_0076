@@ -6,34 +6,41 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Validator;
-
+use Carbon\Carbon;
 class OrderController extends Controller
 {
     /**
-     * Prikaz svih porudžbina.
+     * Prikaz svih porudžbina za ulogovanog korisnika.
      */
     public function index()
     {
-        $orders = Order::with(['user', 'restaurant', 'orderItems'])->get();
+        $userId = auth()->id(); // Dohvatanje ID-a ulogovanog korisnika
+        $orders = Order::with(['restaurant', 'orderItems'])
+            ->where('user_id', $userId)
+            ->get();
+
         return response()->json($orders, 200);
     }
 
     /**
-     * Prikaz jedne porudžbine.
+     * Prikaz jedne porudžbine za ulogovanog korisnika.
      */
     public function show($id)
     {
-        $order = Order::with(['user', 'restaurant', 'orderItems'])->findOrFail($id);
+        $userId = auth()->id(); // Dohvatanje ID-a ulogovanog korisnika
+        $order = Order::with(['restaurant', 'orderItems'])
+            ->where('user_id', $userId)
+            ->findOrFail($id);
+
         return response()->json($order, 200);
     }
 
     /**
-     * Kreiranje nove porudžbine.
+     * Kreiranje nove porudžbine za ulogovanog korisnika.
      */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required|exists:users,id',
             'restaurant_id' => 'required|exists:restaurants,id',
             'ukupna_cena' => 'required|numeric|min:0',
             'status' => 'required|string|max:255',
@@ -48,8 +55,23 @@ class OrderController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $order = Order::create($request->only(['user_id', 'restaurant_id', 'ukupna_cena', 'status', 'datum']));
+        // Automatski uzimamo ID ulogovanog korisnika
+        $userId = auth()->id();
 
+        // Konvertovanje datuma u format "Y-m-d H:i:s"
+        $formattedDate = Carbon::parse($request->datum)->format('Y-m-d H:i:s');
+
+
+        // Kreiramo porudžbinu
+        $order = Order::create([
+            'user_id' => $userId,
+            'restaurant_id' => $request->restaurant_id,
+            'ukupna_cena' => $request->ukupna_cena,
+            'status' => $request->status,
+            'datum' => $formattedDate,
+        ]);
+
+        // Kreiramo stavke porudžbine
         foreach ($request->order_items as $item) {
             $order->orderItems()->create($item);
         }
@@ -58,14 +80,15 @@ class OrderController extends Controller
     }
 
     /**
-     * Ažuriranje porudžbine.
+     * Ažuriranje porudžbine (samo za ulogovanog korisnika).
      */
     public function update(Request $request, $id)
     {
-        $order = Order::findOrFail($id);
+        $userId = auth()->id();
+
+        $order = Order::where('user_id', $userId)->findOrFail($id);
 
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required|exists:users,id',
             'restaurant_id' => 'required|exists:restaurants,id',
             'ukupna_cena' => 'required|numeric|min:0',
             'status' => 'required|string|max:255',
@@ -80,7 +103,12 @@ class OrderController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $order->update($request->only(['user_id', 'restaurant_id', 'ukupna_cena', 'status', 'datum']));
+        $order->update([
+            'restaurant_id' => $request->restaurant_id,
+            'ukupna_cena' => $request->ukupna_cena,
+            'status' => $request->status,
+            'datum' => $request->datum,
+        ]);
 
         if ($request->has('order_items')) {
             $order->orderItems()->delete();
@@ -93,11 +121,13 @@ class OrderController extends Controller
     }
 
     /**
-     * Brisanje porudžbine.
+     * Brisanje porudžbine (samo za ulogovanog korisnika).
      */
     public function destroy($id)
     {
-        $order = Order::findOrFail($id);
+        $userId = auth()->id();
+
+        $order = Order::where('user_id', $userId)->findOrFail($id);
         $order->orderItems()->delete();
         $order->delete();
 

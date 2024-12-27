@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const MenuItemCard = ({ id, naziv, opis, cena, alergeni, sastojci, slika }) => {
+  // Lokalni state za količinu
+  const [kolicina, setKolicina] = useState(1);
+
   const handleAddToCart = () => {
-    // Preuzimamo trenutno ulogovanog korisnika
+    // Uzimamo trenutno ulogovanog korisnika iz localStorage
     const user = JSON.parse(localStorage.getItem("user")) || {};
 
     if (!user || !user.id) {
@@ -15,13 +18,41 @@ const MenuItemCard = ({ id, naziv, opis, cena, alergeni, sastojci, slika }) => {
     const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
     // Kreiramo stavku za dodavanje
-    const newItem = { id, naziv, cena, slika };
-    existingCart.push(newItem);
+    const newItem = { 
+      id, 
+      naziv, 
+      cena, 
+      slika, 
+      kolicina 
+    };
+
+    // Provera da li već postoji ova stavka u korpi
+    const index = existingCart.findIndex(item => item.id === id);
+    if (index !== -1) {
+      // Ako već postoji, samo uvećavamo količinu
+      existingCart[index].kolicina += kolicina;
+    } else {
+      // Ako ne postoji, dodajemo kao novu stavku
+      existingCart.push(newItem);
+    }
 
     // Snimamo nazad u localStorage
     localStorage.setItem(cartKey, JSON.stringify(existingCart));
 
-    alert(`Dodali ste "${naziv}" u korpu!`);
+    alert(`Dodali ste ${kolicina} x "${naziv}" u korpu!`);
+    // Resetujemo polje za količinu na 1 (po želji)
+    setKolicina(1);
+  };
+
+  // Povećavamo ili smanjujemo vrednost količine 
+  const handleDecrease = () => {
+    if (kolicina > 1) {
+      setKolicina(kolicina - 1);
+    }
+  };
+
+  const handleIncrease = () => {
+    setKolicina(kolicina + 1);
   };
 
   return (
@@ -43,6 +74,20 @@ const MenuItemCard = ({ id, naziv, opis, cena, alergeni, sastojci, slika }) => {
             <strong>Sastojci:</strong> {sastojci}
           </p>
         )}
+
+        {/* Kontrolisanje količine */}
+        <div className="quantity-controls">
+          <button onClick={handleDecrease}>-</button>
+          <input 
+            type="number" 
+            value={kolicina} 
+            min="1" 
+            onChange={(e) => setKolicina(Number(e.target.value))} 
+          />
+          <button onClick={handleIncrease}>+</button>
+        </div>
+
+        {/* Dodavanje u korpu */}
         <button onClick={handleAddToCart} className="menu-item-card__add-btn">
           Dodaj u korpu
         </button>
