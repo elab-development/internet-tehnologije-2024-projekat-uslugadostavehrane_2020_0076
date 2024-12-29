@@ -24,7 +24,7 @@ const AuthPage = () => {
   // Register polja
   const [ime, setIme] = useState('Proba');
   const [prezime, setPrezime] = useState('Proba');
-  const [regEmail, setRegEmail] = useState('proba@gmail.com');
+  const [regEmail, setRegEmail] = useState('proba2@gmail.com');
   const [regPassword, setRegPassword] = useState('proba123');
   const [regPasswordConf, setRegPasswordConf] = useState('proba123');
   const [adresa, setAdresa] = useState('Adresa 12');

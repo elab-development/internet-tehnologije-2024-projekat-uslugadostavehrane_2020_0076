@@ -7,6 +7,7 @@ import Navbar from './components/reusable/Navbar';
 import RestaurantsList from './components/Restaurants/RestaurantsList';
 import MenuItemsList from './components/Restaurants/MenuItemsList';
 import CartPage from './components/Korpa/CartPage';
+import UpravljanjeRestoranima from './components/Admin/UpravljanjeRestoranima';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
             <Route path="/ponuda" element={<RestaurantsList />} />
             <Route path="/restaurants/:id/menu" element={<MenuItemsList />} />
             <Route path="/korpa" element={<CartPage />} />
+            <Route path="/admin" element={<UpravljanjeRestoranima />} />
+
           </Routes>
         </div>
       </Router>
