@@ -7,15 +7,17 @@ import axios from "axios";
 const UpravljanjeRestoranima = () => {
   const { restaurants, loading, error } = useRestaurants();
   const [showModal, setShowModal] = useState(false);
-  const [newRestaurant, setNewRestaurant] = useState({
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [currentRestaurantId, setCurrentRestaurantId] = useState(null);
+  const [restaurantData, setRestaurantData] = useState({
     naziv: "",
     adresa: "",
     telefon: "",
     tip_hrane: "",
     opis: "",
   });
-  const [adding, setAdding] = useState(false);
-  const [addError, setAddError] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState(null);
 
   const columns = [
     {
@@ -39,29 +41,59 @@ const UpravljanjeRestoranima = () => {
       name: "Opis",
       selector: (row) => row.opis || "N/A",
     },
+    {
+      name: "Akcije",
+      cell: (row) => (
+        <button
+          className="edit-btn"
+          onClick={() => handleEditRestaurant(row.id, row)}
+        >
+          Izmeni
+        </button>
+      ),
+    },
   ];
 
-  const handleAddRestaurant = async () => {
-    setAdding(true);
-    setAddError(null);
+  const handleSaveRestaurant = async () => {
+    setSaving(true);
+    setSaveError(null);
     const token = sessionStorage.getItem("token");
     try {
-      await axios.post(
-        "http://127.0.0.1:8000/api/restaurants",
-        newRestaurant,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      if (isEditMode) {
+        await axios.put(
+          `http://127.0.0.1:8000/api/restaurants/${currentRestaurantId}`,
+          restaurantData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      } else {
+        await axios.post(
+          "http://127.0.0.1:8000/api/restaurants",
+          restaurantData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      }
       setShowModal(false);
-      window.location.reload(); // Osvježavanje nakon dodavanja
+      window.location.reload(); // Osvježavanje nakon čuvanja
     } catch (err) {
-      setAddError(err.response?.data?.message || "Došlo je do greške.");
+      setSaveError(err.response?.data?.message || "Došlo je do greške.");
     } finally {
-      setAdding(false);
+      setSaving(false);
     }
+  };
+
+  const handleEditRestaurant = (id, data) => {
+    setCurrentRestaurantId(id);
+    setRestaurantData(data);
+    setIsEditMode(true);
+    setShowModal(true);
   };
 
   if (loading) return <p>Učitavanje podataka...</p>;
@@ -70,7 +102,20 @@ const UpravljanjeRestoranima = () => {
   return (
     <div className="restaurants-management">
       <h1>Restorani</h1>
-      <button className="add-restaurant-btn" onClick={() => setShowModal(true)}>
+      <button
+        className="add-restaurant-btn"
+        onClick={() => {
+          setRestaurantData({
+            naziv: "",
+            adresa: "",
+            telefon: "",
+            tip_hrane: "",
+            opis: "",
+          });
+          setIsEditMode(false);
+          setShowModal(true);
+        }}
+      >
         Dodaj Restoran
       </button>
       <DataTable
@@ -84,54 +129,54 @@ const UpravljanjeRestoranima = () => {
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h2>Dodaj novi restoran</h2>
-            {addError && <p className="error-message">{addError}</p>}
+            <h2>{isEditMode ? "Izmeni restoran" : "Dodaj novi restoran"}</h2>
+            {saveError && <p className="error-message">{saveError}</p>}
             <div className="modal-form">
               <label>Naziv</label>
               <input
                 type="text"
-                value={newRestaurant.naziv}
+                value={restaurantData.naziv}
                 onChange={(e) =>
-                  setNewRestaurant({ ...newRestaurant, naziv: e.target.value })
+                  setRestaurantData({ ...restaurantData, naziv: e.target.value })
                 }
               />
               <label>Adresa</label>
               <input
                 type="text"
-                value={newRestaurant.adresa}
+                value={restaurantData.adresa}
                 onChange={(e) =>
-                  setNewRestaurant({ ...newRestaurant, adresa: e.target.value })
+                  setRestaurantData({ ...restaurantData, adresa: e.target.value })
                 }
               />
               <label>Telefon</label>
               <input
                 type="text"
-                value={newRestaurant.telefon}
+                value={restaurantData.telefon}
                 onChange={(e) =>
-                  setNewRestaurant({ ...newRestaurant, telefon: e.target.value })
+                  setRestaurantData({ ...restaurantData, telefon: e.target.value })
                 }
               />
               <label>Tip hrane</label>
               <input
                 type="text"
-                value={newRestaurant.tip_hrane}
+                value={restaurantData.tip_hrane}
                 onChange={(e) =>
-                  setNewRestaurant({ ...newRestaurant, tip_hrane: e.target.value })
+                  setRestaurantData({ ...restaurantData, tip_hrane: e.target.value })
                 }
               />
               <label>Opis</label>
               <textarea
-                value={newRestaurant.opis}
+                value={restaurantData.opis}
                 onChange={(e) =>
-                  setNewRestaurant({ ...newRestaurant, opis: e.target.value })
+                  setRestaurantData({ ...restaurantData, opis: e.target.value })
                 }
               />
               <button
                 className="submit-btn"
-                onClick={handleAddRestaurant}
-                disabled={adding}
+                onClick={handleSaveRestaurant}
+                disabled={saving}
               >
-                {adding ? "Dodavanje..." : "Dodaj"}
+                {saving ? "Čuvanje..." : isEditMode ? "Sačuvaj" : "Dodaj"}
               </button>
               <button
                 className="cancel-btn"
