@@ -18,6 +18,7 @@ const UpravljanjeRestoranima = () => {
   });
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState(null);
+  const [deleteError, setDeleteError] = useState(null);
 
   const columns = [
     {
@@ -44,12 +45,20 @@ const UpravljanjeRestoranima = () => {
     {
       name: "Akcije",
       cell: (row) => (
-        <button
-          className="edit-btn"
-          onClick={() => handleEditRestaurant(row.id, row)}
-        >
-          Izmeni
-        </button>
+        <div className="actions-cell">
+          <button
+            className="edit-btn"
+            onClick={() => handleEditRestaurant(row.id, row)}
+          >
+            Izmeni
+          </button>
+          <button
+            className="delete-btn"
+            onClick={() => handleDeleteRestaurant(row.id)}
+          >
+            Obriši
+          </button>
+        </div>
       ),
     },
   ];
@@ -96,12 +105,28 @@ const UpravljanjeRestoranima = () => {
     setShowModal(true);
   };
 
+  const handleDeleteRestaurant = async (id) => {
+    setDeleteError(null);
+    const token = sessionStorage.getItem("token");
+    try {
+      await axios.delete(`http://127.0.0.1:8000/api/restaurants/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      window.location.reload(); // Osvježavanje nakon brisanja
+    } catch (err) {
+      setDeleteError(err.response?.data?.message || "Došlo je do greške prilikom brisanja.");
+    }
+  };
+
   if (loading) return <p>Učitavanje podataka...</p>;
   if (error) return <p>Greška: {error}</p>;
 
   return (
     <div className="restaurants-management">
       <h1>Restorani</h1>
+      {deleteError && <p className="error-message">{deleteError}</p>}
       <button
         className="add-restaurant-btn"
         onClick={() => {
