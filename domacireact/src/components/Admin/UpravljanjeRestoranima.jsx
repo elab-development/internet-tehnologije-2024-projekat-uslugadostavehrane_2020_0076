@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 import useRestaurants from "../../hooks/useRestaurants";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
  
 
 const UpravljanjeRestoranima = () => {
+  let navigate= useNavigate();
   const { restaurants, loading, error } = useRestaurants();
   const [showModal, setShowModal] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -57,6 +59,12 @@ const UpravljanjeRestoranima = () => {
             onClick={() => handleDeleteRestaurant(row.id)}
           >
             Obriši
+          </button>
+          <button
+            className="menu-items-btn"
+            onClick={() => navigate(`/admin/restaurant/${row.id}/menuitems`)}
+          >
+            Prikaži meni
           </button>
         </div>
       ),

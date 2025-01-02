@@ -8,6 +8,7 @@ import RestaurantsList from './components/Restaurants/RestaurantsList';
 import MenuItemsList from './components/Restaurants/MenuItemsList';
 import CartPage from './components/Korpa/CartPage';
 import UpravljanjeRestoranima from './components/Admin/UpravljanjeRestoranima';
+import MenuItems from './components/Admin/MenuItems';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/restaurants/:id/menu" element={<MenuItemsList />} />
             <Route path="/korpa" element={<CartPage />} />
             <Route path="/admin" element={<UpravljanjeRestoranima />} />
+            <Route path="/admin/restaurant/:id/menuitems" element={<MenuItems />} />
 
           </Routes>
         </div>
