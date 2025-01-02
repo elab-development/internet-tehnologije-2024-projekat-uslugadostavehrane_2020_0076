@@ -133,4 +133,22 @@ class OrderController extends Controller
 
         return response()->json(['message' => 'Porudžbina uspešno obrisana.'], 200);
     }
+
+
+
+    /**
+     * Prikaz svih porudžbina za određeni restoran.  - dodato za seminarski 
+     */
+    public function getOrdersByRestaurant($restaurantId)
+    {
+        $orders = Order::with(['user', 'orderItems.menuItem'])
+            ->where('restaurant_id', $restaurantId)
+            ->get();
+
+        return response()->json([
+            'message' => 'Porudžbine uspešno preuzete.',
+            'data' => $orders,
+        ], 200);
+    }
+
 }

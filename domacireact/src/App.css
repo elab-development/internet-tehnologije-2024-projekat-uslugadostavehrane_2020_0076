@@ -891,3 +891,359 @@ body {
 .cancel-btn:hover {
   background-color: #d32f2f;
 }
+/* Glavni stilovi za MenuItems komponentu */
+.menu-items {
+  padding: 2rem;
+  background-color: #f9f9f9; /* Svetla pozadina */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.menu-items h1 {
+  font-size: 2rem;
+  color: #00c389; /* Primarna boja */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.add-menu-item-btn {
+  background-color: #00c389; /* Primarna boja */
+  color: white;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+}
+
+.add-menu-item-btn:hover {
+  background-color: #02b57f; /* Svetlija nijansa */
+}
+
+/* Stilovi za DataTable */
+.data-table {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  background: white;
+}
+
+.data-table__header {
+  font-weight: bold;
+  color: #00c389;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.edit-btn {
+  background-color: #febe10; /* Akcentna boja */
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #ffce33;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Modal stilovi */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-content h2 {
+  font-size: 1.5rem;
+  color: #00c389;
+  margin-bottom: 1.5rem;
+}
+
+.modal-form label {
+  display: block;
+  margin: 1rem 0 0.5rem;
+  font-weight: bold;
+}
+
+.modal-form input,
+.modal-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-btn {
+  background-color: #00c389;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #02b57f;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #d32f2f;
+}
+/* Glavni stilovi za UpravljanjeRestoranima */
+.restaurants-management {
+  padding: 2rem;
+  background-color: #f9f9f9; /* Svetla pozadina */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.restaurants-management h1 {
+  font-size: 2rem;
+  color: #00c389; /* Primarna boja */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.add-restaurant-btn {
+  background-color: #00c389; /* Primarna boja */
+  color: white;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+}
+
+.add-restaurant-btn:hover {
+  background-color: #02b57f; /* Svetlija nijansa */
+}
+
+/* Stilovi za DataTable */
+.data-table {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  background: white;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.edit-btn,
+.delete-btn,
+.menu-items-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.edit-btn {
+  background-color: #febe10; /* Akcentna boja */
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #ffce33;
+}
+
+.delete-btn {
+  background-color: #f44336; /* Crvena za brisanje */
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+.menu-items-btn {
+  background-color: #007bff; /* Plava za prikaz menija */
+  color: white;
+}
+
+.menu-items-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Modal stilovi */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-content h2 {
+  font-size: 1.5rem;
+  color: #00c389;
+  margin-bottom: 1.5rem;
+}
+
+.modal-form label {
+  display: block;
+  margin: 1rem 0 0.5rem;
+  font-weight: bold;
+}
+
+.modal-form input,
+.modal-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-btn {
+  background-color: #00c389; /* Primarna boja */
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #02b57f;
+}
+
+.cancel-btn {
+  background-color: #f44336; /* Crvena za otkazivanje */
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Greška poruke */
+.error-message {
+  color: #f44336;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+.restaurant-orders {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.order-statistics {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.order-statistics h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.order-statistics p {
+  font-size: 1rem;
+  margin: 5px 0;
+  color: #555;
+}
+
+.order-statistics ul {
+  list-style: none;
+  padding: 0;
+}
+
+.order-statistics li {
+  font-size: 0.95rem;
+  margin: 5px 0;
+  color: #666;
+}

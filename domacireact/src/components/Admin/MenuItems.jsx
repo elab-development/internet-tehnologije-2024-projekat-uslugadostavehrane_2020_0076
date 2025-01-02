@@ -92,7 +92,7 @@ const MenuItems = () => {
 
   return (
     <div className="menu-items">
-      <h1>Stavke menija za restoran ID: {restaurantId}</h1>
+      <h1>Stavke menija</h1>
       <button
         className="add-menu-item-btn"
         onClick={() => {

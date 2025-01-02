@@ -66,6 +66,12 @@ const UpravljanjeRestoranima = () => {
           >
             Prikaži meni
           </button>
+          <button
+            className="menu-items-btn"
+            onClick={() => navigate(`/admin/restaurant/${row.id}/orders`)}
+          >
+            Prikaži porudžbine
+          </button>
         </div>
       ),
     },

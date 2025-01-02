@@ -9,6 +9,7 @@ import MenuItemsList from './components/Restaurants/MenuItemsList';
 import CartPage from './components/Korpa/CartPage';
 import UpravljanjeRestoranima from './components/Admin/UpravljanjeRestoranima';
 import MenuItems from './components/Admin/MenuItems';
+import RestaurantOrders from './components/Admin/RestaurantOrders';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/korpa" element={<CartPage />} />
             <Route path="/admin" element={<UpravljanjeRestoranima />} />
             <Route path="/admin/restaurant/:id/menuitems" element={<MenuItems />} />
+            <Route path="/admin/restaurant/:id/orders" element={<RestaurantOrders />} />
 
           </Routes>
         </div>

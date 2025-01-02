@@ -21,7 +21,8 @@ use App\Http\Controllers\ReviewController;
 
 
 Route::get('/restaurants/{id}/menu-items', [MenuItemController::class, 'getByRestaurant']);
- 
+Route::get('restaurants/{restaurantId}/orders', [OrderController::class, 'getOrdersByRestaurant'])
+->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->group(function () {
     // Rute za rad sa porudžbinama
